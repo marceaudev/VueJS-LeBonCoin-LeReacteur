@@ -60,6 +60,7 @@ import logo from '../assets/img/logo.svg'
 /* Bordure sous le header principal */
 header {
   border-bottom: 1px solid var(--grey);
+  margin-bottom: 25px;
 }
 
 /* Conteneur principal du header : colonne avec espacement et padding */
