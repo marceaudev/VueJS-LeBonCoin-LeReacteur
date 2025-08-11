@@ -5,13 +5,5 @@ import Header from './components/Header.vue'
 
 <template>
   <Header />
-  <main class="container">
-    <RouterView />
-  </main>
+  <RouterView />
 </template>
-
-<style scoped>
-main {
-  height: calc(100vh - var(--header-height));
-}
-</style>

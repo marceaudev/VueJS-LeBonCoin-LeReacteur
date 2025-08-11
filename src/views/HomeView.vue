@@ -1,16 +1,43 @@
-<script setup></script>
+<script setup>
+import { onMounted, ref } from 'vue'
+import axios from 'axios'
+import ProductCard from '@/components/ProductCard.vue'
+import SellBanner from '@/components/SellBanner.vue'
+
+const products = ref([])
+
+onMounted(async () => {
+  try {
+    const { data } = await axios.get(
+      'https://site--strapileboncoin--2m8zk47gvydr.code.run/api/offers?populate[0]=pictures&populate[1]=owner.avatar',
+    )
+    products.value = data.data
+  } catch (error) {
+    console.log(error.message)
+  }
+})
+</script>
 
 <template>
-  <h1>Des millions de petites annonces et autant d'occasions de se faire plaisir</h1>
-  <section class="banner">
-    <img src="../assets/img/feuille-bleue.svg" alt="Dessin d'une feuille bleue" class="leaf" />
-    <img src="../assets/img/onde-corail.svg" alt="Dessin d'un corail" class="coral" />
-    <p>C'est le moment de vendre</p>
-    <button><font-awesome-icon :icon="['far', 'square-plus']" />Déposer une annonce</button>
-  </section>
+  <main class="container">
+    <p v-if="products.length === 0">Chargement en cours...</p>
+    <div v-else>
+      <h1>Des millions de petites annonces et autant d'occasions de se faire plaisir</h1>
+      <SellBanner />
+      <section class="home-product">
+        <ProductCard :products="products" />
+      </section>
+    </div>
+  </main>
 </template>
 
 <style scoped>
+.container {
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  justify-content: center;
+}
+
 h1 {
   text-align: center;
   font-size: 24px;
@@ -18,33 +45,11 @@ h1 {
   margin-bottom: 25px;
 }
 
-.banner {
+.home-product {
   display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--orange-pale);
-  height: 80px;
+  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 20px;
-  border-radius: 20px;
-  overflow: hidden;
-  position: relative;
-}
-
-.leaf {
-  height: 100%;
-  position: absolute;
-  right: 0;
-}
-
-.coral {
-  height: 100%;
-  position: absolute;
-  left: 0;
-}
-
-.banner p {
-  font-size: 18px;
-  font-weight: bold;
+  margin-top: 25px;
 }
 </style>
