@@ -112,7 +112,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--black);
+  color: white;
   background-color: var(--orange);
   border: none;
   border-radius: 10px;
