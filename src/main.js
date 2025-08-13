@@ -13,6 +13,8 @@ import {
   faCircle,
   faLocationArrow,
   faCheckDouble,
+  faChevronLeft,
+  faChevronRight,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { faUser, faSquarePlus, faHeart, faClock } from '@fortawesome/free-regular-svg-icons'
@@ -26,6 +28,8 @@ library.add(
   faLocationArrow,
   faCheckDouble,
   faClock,
+  faChevronLeft,
+  faChevronRight,
 )
 
 const app = createApp(App).component('font-awesome-icon', FontAwesomeIcon)

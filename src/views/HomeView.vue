@@ -42,8 +42,7 @@ onMounted(async () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - var(--header-height) - var(--footer-height));
-  padding-bottom: 40px;
+  padding: 30px 0;
 }
 
 /* main title */
@@ -52,12 +51,6 @@ h1 {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 25px;
-}
-
-/* loader style */
-.loader {
-  font-size: 32px;
-  font-weight: bold;
 }
 
 /* offer section (for card components) */

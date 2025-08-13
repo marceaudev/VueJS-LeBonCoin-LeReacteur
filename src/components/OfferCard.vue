@@ -1,5 +1,7 @@
 <script setup>
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
+import { priceFormat } from '@/assets/utils/priceFormat'
 
 const props = defineProps({
   id: {
@@ -11,7 +13,10 @@ const props = defineProps({
     required: true,
   },
 })
-console.log(props.offers)
+
+const dateFormat = computed(() => {
+  return props.offers.updatedAt.split('T')[0].split('-').reverse().join('/')
+})
 </script>
 
 <template>
@@ -27,9 +32,9 @@ console.log(props.offers)
     </div>
     <img :src="offers.pictures.data[0].attributes.url" :alt="offers.title" class="offerImg" />
     <p class="title">{{ offers.title }}</p>
-    <p class="price">{{ offers.price }} €</p>
+    <p class="price">{{ priceFormat(offers.price) }} €</p>
     <font-awesome-icon :icon="['far', 'heart']" />
-    <span>{{ offers.createdAt }}</span>
+    <span>{{ dateFormat }}</span>
   </RouterLink>
 </template>
 
@@ -50,6 +55,12 @@ a {
   align-items: center;
   gap: 10px;
   font-weight: bold;
+}
+
+.userOfferInfo p {
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .userImg {
@@ -88,6 +99,7 @@ span {
   position: absolute;
   bottom: 0;
   left: 0;
-  font-size: 7px;
+  font-size: 11px;
+  color: var(--grey);
 }
 </style>

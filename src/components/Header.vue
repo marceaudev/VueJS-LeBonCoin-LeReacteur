@@ -62,6 +62,11 @@ import PublishBtn from './PublishBtn.vue'
 header {
   border-bottom: 1px solid var(--grey);
   margin-bottom: 25px;
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  z-index: 1;
+  top: 0;
 }
 
 /* header container , size, position & display */
