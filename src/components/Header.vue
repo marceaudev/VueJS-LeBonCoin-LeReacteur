@@ -57,13 +57,13 @@ import logo from '../assets/img/logo.svg'
 </template>
 
 <style scoped>
-/* Bordure sous le header principal */
+/* header border bottom & margin*/
 header {
   border-bottom: 1px solid var(--grey);
   margin-bottom: 25px;
 }
 
-/* Conteneur principal du header : colonne avec espacement et padding */
+/* header container , size, position & display */
 .container {
   display: flex;
   flex-direction: column;
@@ -72,32 +72,32 @@ header {
   height: var(--header-height);
 }
 
-/* Taille du logo */
+/* logo size */
 img {
   width: 140px;
 }
 
-/* Partie haute du header : logo, boutons, recherche, connexion */
+/* topHeader position, display*/
 .topHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* Conteneurs internes (bouton déposer + recherche) dans le top-header avec espacement */
+/* topHeader middle bloc */
 .topHeader > div:nth-child(2) {
   display: flex;
   gap: 20px;
 }
 
-/* Conteneur de la barre de recherche (input + bouton) */
+/* topHeader middle bloc search input + search button */
 .topHeader > div:nth-child(2) > div {
   display: flex;
   position: relative;
   align-items: center;
 }
 
-/* Bouton de recherche positionné à droite dans le conteneur input */
+/* search button position */
 .topHeader > div:nth-child(2) > div button {
   position: absolute;
   right: 5px;
@@ -109,7 +109,7 @@ img {
   color: var(--black);
 }
 
-/* Style du champ input recherche */
+/* search input style */
 .topHeader input {
   width: 250px;
   background-color: var(--grey-light);
@@ -120,14 +120,14 @@ img {
   border: none;
 }
 
-/* Style du placeholder du champ recherche */
+/* search input placeholder style */
 .topHeader input::placeholder {
   color: var(--black);
   font-size: 16px;
   padding: 0 5px;
 }
 
-/* Conteneur pour l'icône utilisateur + texte */
+/* topHeader login*/
 .topHeader > div:nth-child(3) {
   display: flex;
   flex-direction: column;
@@ -135,12 +135,12 @@ img {
   gap: 15px;
 }
 
-/* bottom-header contenant la navigation */
+/* bottomHeader size */
 .bottomHeader nav {
   width: 100%;
 }
 
-/* Liste de navigation principale avec éléments espacés */
+/* bottomHeader unordered list style and size */
 .bottomHeader ul {
   width: 100%;
   display: flex;
@@ -148,7 +148,7 @@ img {
   align-items: center;
 }
 
-/* Icônes cercle entre les items */
+/* dot icon between li */
 .bottomHeader ul svg {
   font-size: 2px;
 }

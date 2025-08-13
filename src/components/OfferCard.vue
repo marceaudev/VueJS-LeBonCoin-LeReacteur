@@ -16,16 +16,16 @@ console.log(props.offers)
 
 <template>
   <RouterLink :to="{ name: 'home' }">
-    <div class="user-info">
+    <div class="userOfferInfo">
       <img
         :src="offers.owner.data.attributes.avatar.data.attributes.url"
         alt=""
         v-if="offers.owner.data.attributes.avatar.data"
-        class="user-img"
+        class="userImg"
       />
       <p>{{ offers.owner.data.attributes.username }}</p>
     </div>
-    <img :src="offers.pictures.data[0].attributes.url" :alt="offers.title" class="product-img" />
+    <img :src="offers.pictures.data[0].attributes.url" :alt="offers.title" class="offerImg" />
     <p class="title">{{ offers.title }}</p>
     <p class="price">{{ offers.price }} €</p>
     <font-awesome-icon :icon="['far', 'heart']" />
@@ -34,6 +34,7 @@ console.log(props.offers)
 </template>
 
 <style scoped>
+/* card position, display and size */
 a {
   display: flex;
   flex-direction: column;
@@ -43,20 +44,22 @@ a {
   position: relative;
 }
 
-.user-info {
+/* offer user info (avatar + name) */
+.userOfferInfo {
   display: flex;
   align-items: center;
   gap: 10px;
   font-weight: bold;
 }
 
-.user-img {
+.userImg {
   width: 25px;
   height: 25px;
   border-radius: 100%;
 }
 
-.product-img {
+/* offer image */
+.offerImg {
   width: 100%;
   min-height: 240px;
   max-height: 240px;
@@ -65,11 +68,13 @@ a {
   border-radius: 10px;
 }
 
+/* offer title & price */
 .title,
 .price {
   font-weight: bold;
 }
 
+/* heart icon */
 svg {
   position: absolute;
   bottom: 0;
@@ -78,6 +83,7 @@ svg {
   font-size: 20px;
 }
 
+/* offer date */
 span {
   position: absolute;
   bottom: 0;

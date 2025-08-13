@@ -37,6 +37,7 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+/* main container position , display and size */
 .container {
   display: flex;
   justify-content: center;
@@ -45,6 +46,7 @@ onMounted(async () => {
   padding-bottom: 40px;
 }
 
+/* main title */
 h1 {
   text-align: center;
   font-size: 24px;
@@ -52,11 +54,13 @@ h1 {
   margin-bottom: 25px;
 }
 
+/* loader style */
 .loader {
   font-size: 32px;
   font-weight: bold;
 }
 
+/* offer section (for card components) */
 .homeOffers {
   display: flex;
   flex-wrap: wrap;

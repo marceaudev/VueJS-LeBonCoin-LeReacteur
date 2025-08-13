@@ -8,6 +8,7 @@
 </template>
 
 <style scoped>
+/* position, display, size & style for the banner*/
 .banner {
   display: flex;
   width: 100%;
@@ -21,18 +22,21 @@
   position: relative;
 }
 
+/* leaf img position */
 .leaf {
   height: 100%;
   position: absolute;
   right: 0;
 }
 
+/* coral img position */
 .coral {
   height: 100%;
   position: absolute;
   left: 0;
 }
 
+/* banner text */
 .banner p {
   font-size: 18px;
   font-weight: bold;
