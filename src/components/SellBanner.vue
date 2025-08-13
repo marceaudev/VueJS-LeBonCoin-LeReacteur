@@ -1,9 +1,13 @@
+<script setup>
+import PublishBtn from './PublishBtn.vue'
+</script>
+
 <template>
   <section class="banner">
     <img src="../assets/img/feuille-bleue.svg" alt="Dessin d'une feuille bleue" class="leaf" />
     <img src="../assets/img/onde-corail.svg" alt="Dessin d'un corail" class="coral" />
     <p>C'est le moment de vendre</p>
-    <button><font-awesome-icon :icon="['far', 'square-plus']" />Déposer une annonce</button>
+    <PublishBtn />
   </section>
 </template>
 

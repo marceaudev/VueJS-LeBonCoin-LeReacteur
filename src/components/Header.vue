@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import logo from '../assets/img/logo.svg'
+import PublishBtn from './PublishBtn.vue'
 </script>
 
 <template>
@@ -11,7 +12,7 @@ import logo from '../assets/img/logo.svg'
           <img :src="logo" alt="Logo de Leboncoin" />
         </RouterLink>
         <div>
-          <button><font-awesome-icon :icon="['far', 'square-plus']" />Déposer une annonce</button>
+          <PublishBtn />
           <div>
             <input
               type="text"
@@ -107,6 +108,9 @@ img {
   align-items: center;
   justify-content: center;
   color: var(--black);
+  background-color: var(--orange);
+  border: none;
+  border-radius: 10px;
 }
 
 /* search input style */
