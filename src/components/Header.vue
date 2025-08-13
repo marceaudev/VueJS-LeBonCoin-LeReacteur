@@ -6,7 +6,7 @@ import logo from '../assets/img/logo.svg'
 <template>
   <header>
     <div class="container">
-      <div class="top-header">
+      <div class="topHeader">
         <RouterLink :to="{ name: 'home' }">
           <img :src="logo" alt="Logo de Leboncoin" />
         </RouterLink>
@@ -27,7 +27,7 @@ import logo from '../assets/img/logo.svg'
           <p>Se connecter</p>
         </div>
       </div>
-      <div class="bottom-header">
+      <div class="bottomHeader">
         <nav>
           <ul>
             <li>Immobilier</li>
@@ -78,27 +78,27 @@ img {
 }
 
 /* Partie haute du header : logo, boutons, recherche, connexion */
-.top-header {
+.topHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 /* Conteneurs internes (bouton déposer + recherche) dans le top-header avec espacement */
-.top-header > div {
+.topHeader > div:nth-child(2) {
   display: flex;
   gap: 20px;
 }
 
 /* Conteneur de la barre de recherche (input + bouton) */
-.top-header > div:nth-child(2) > div {
+.topHeader > div:nth-child(2) > div {
   display: flex;
   position: relative;
   align-items: center;
 }
 
 /* Bouton de recherche positionné à droite dans le conteneur input */
-.top-header > div:nth-child(2) > div button {
+.topHeader > div:nth-child(2) > div button {
   position: absolute;
   right: 5px;
   height: 32px;
@@ -110,7 +110,7 @@ img {
 }
 
 /* Style du champ input recherche */
-.top-header input {
+.topHeader input {
   width: 250px;
   background-color: var(--grey-light);
   border-radius: 10px;
@@ -121,14 +121,14 @@ img {
 }
 
 /* Style du placeholder du champ recherche */
-.top-header input::placeholder {
+.topHeader input::placeholder {
   color: var(--black);
   font-size: 16px;
   padding: 0 5px;
 }
 
 /* Conteneur pour l'icône utilisateur + texte */
-.top-header > div:nth-child(3) {
+.topHeader > div:nth-child(3) {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,12 +136,12 @@ img {
 }
 
 /* bottom-header contenant la navigation */
-.bottom-header nav {
+.bottomHeader nav {
   width: 100%;
 }
 
 /* Liste de navigation principale avec éléments espacés */
-.bottom-header ul {
+.bottomHeader ul {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -149,7 +149,7 @@ img {
 }
 
 /* Icônes cercle entre les items */
-.bottom-header ul svg {
+.bottomHeader ul svg {
   font-size: 2px;
 }
 </style>

@@ -2,34 +2,34 @@
 import { RouterLink } from 'vue-router'
 
 const props = defineProps({
-  products: {
-    type: Array,
+  id: {
+    type: Number,
+    required: true,
+  },
+  offers: {
+    type: Object,
     required: true,
   },
 })
-console.log(props.products)
+console.log(props.offers)
 </script>
 
 <template>
-  <RouterLink v-for="product in products" :key="product.id" :to="{ name: 'home' }">
+  <RouterLink :to="{ name: 'home' }">
     <div class="user-info">
       <img
-        :src="product.attributes.owner.data.attributes.avatar.data.attributes.url"
+        :src="offers.owner.data.attributes.avatar.data.attributes.url"
         alt=""
-        v-if="product.attributes.owner.data.attributes.avatar.data"
+        v-if="offers.owner.data.attributes.avatar.data"
         class="user-img"
       />
-      <p>{{ product.attributes.owner.data.attributes.username }}</p>
+      <p>{{ offers.owner.data.attributes.username }}</p>
     </div>
-    <img
-      :src="product.attributes.pictures.data[0].attributes.url"
-      :alt="product.attributes.title"
-      class="product-img"
-    />
-    <p class="title">{{ product.attributes.title }}</p>
-    <p class="price">{{ product.attributes.price }} €</p>
+    <img :src="offers.pictures.data[0].attributes.url" :alt="offers.title" class="product-img" />
+    <p class="title">{{ offers.title }}</p>
+    <p class="price">{{ offers.price }} €</p>
     <font-awesome-icon :icon="['far', 'heart']" />
-    <span>{{ product.attributes.createdAt }}</span>
+    <span>{{ offers.createdAt }}</span>
   </RouterLink>
 </template>
 

@@ -1,17 +1,17 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
-import ProductCard from '@/components/ProductCard.vue'
+import OfferCard from '@/components/OfferCard.vue'
 import SellBanner from '@/components/SellBanner.vue'
 
-const products = ref([])
+const offersList = ref({})
 
 onMounted(async () => {
   try {
     const { data } = await axios.get(
       'https://site--strapileboncoin--2m8zk47gvydr.code.run/api/offers?populate[0]=pictures&populate[1]=owner.avatar',
     )
-    products.value = data.data
+    offersList.value = data
   } catch (error) {
     console.log(error.message)
   }
@@ -20,12 +20,17 @@ onMounted(async () => {
 
 <template>
   <main class="container">
-    <p v-if="products.length === 0">Chargement en cours...</p>
+    <p v-if="!offersList.data" class="loader">Chargement en cours...</p>
     <div v-else>
       <h1>Des millions de petites annonces et autant d'occasions de se faire plaisir</h1>
       <SellBanner />
-      <section class="home-product">
-        <ProductCard :products="products" />
+      <section class="homeOffers">
+        <OfferCard
+          v-for="offer in offersList.data"
+          :key="offer.id"
+          :offers="offer.attributes"
+          :id="offer.id"
+        />
       </section>
     </div>
   </main>
@@ -33,9 +38,11 @@ onMounted(async () => {
 
 <style scoped>
 .container {
-  height: calc(100vh - var(--header-height));
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  padding-bottom: 40px;
 }
 
 h1 {
@@ -45,7 +52,12 @@ h1 {
   margin-bottom: 25px;
 }
 
-.home-product {
+.loader {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.homeOffers {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
