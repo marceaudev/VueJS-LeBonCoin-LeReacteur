@@ -15,7 +15,7 @@ console.log(props.offers)
 </script>
 
 <template>
-  <RouterLink :to="{ name: 'home' }">
+  <RouterLink :to="{ name: 'offer', params: { id: id } }">
     <div class="userOfferInfo">
       <img
         :src="offers.owner.data.attributes.avatar.data.attributes.url"
