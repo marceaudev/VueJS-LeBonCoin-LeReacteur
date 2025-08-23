@@ -2,6 +2,14 @@
 import { RouterLink } from 'vue-router'
 import logo from '../assets/img/logo.svg'
 import PublishBtn from './PublishBtn.vue'
+import { inject } from 'vue'
+
+const token = inject('token')
+
+const disconnect = () => {
+  token.token = ''
+  token.username = ''
+}
 </script>
 
 <template>
@@ -23,9 +31,11 @@ import PublishBtn from './PublishBtn.vue'
             <button><font-awesome-icon :icon="['fas', 'search']" /></button>
           </div>
         </div>
-        <div>
+        <div @click="disconnect">
           <font-awesome-icon :icon="['far', 'user']" />
-          <p>Se connecter</p>
+          <RouterLink :to="{ name: 'login' }">{{
+            token.token ? token.username : 'Se connecter'
+          }}</RouterLink>
         </div>
       </div>
       <div class="bottomHeader">
@@ -60,7 +70,7 @@ import PublishBtn from './PublishBtn.vue'
 <style scoped>
 /* header border bottom & margin*/
 header {
-  border-bottom: 1px solid var(--grey);
+  box-shadow: 0 0 3px 0 var(--grey);
   margin-bottom: 25px;
   position: fixed;
   width: 100%;
