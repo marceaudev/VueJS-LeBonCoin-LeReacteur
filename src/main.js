@@ -1,12 +1,15 @@
 import './assets/main.css'
 
-import { createApp, provide, reactive } from 'vue'
+import { createApp, reactive } from 'vue'
 import App from './App.vue'
 import router from './router'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+import { useCookies } from 'vue3-cookies'
+const { cookies } = useCookies()
 
 import {
   faSearch,
@@ -39,11 +42,13 @@ library.add(
 )
 
 const token = reactive({
-  token: '',
-  username: '',
+  token: cookies.get('token') || null,
+  username: cookies.get('username') || null,
 })
 
 const app = createApp(App).component('font-awesome-icon', FontAwesomeIcon)
+
+app.provide('GlobalStore', { token: token.token, username: token.username })
 
 app.provide('token', token)
 

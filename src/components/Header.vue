@@ -3,12 +3,16 @@ import { RouterLink } from 'vue-router'
 import logo from '../assets/img/logo.svg'
 import PublishBtn from './PublishBtn.vue'
 import { inject } from 'vue'
+import { useCookies } from 'vue3-cookies'
+const { cookies } = useCookies()
 
 const token = inject('token')
 
 const disconnect = () => {
-  token.token = ''
-  token.username = ''
+  cookies.remove('token')
+  cookies.remove('username')
+  token.token = null
+  token.username = null
 }
 </script>
 
@@ -31,11 +35,16 @@ const disconnect = () => {
             <button><font-awesome-icon :icon="['fas', 'search']" /></button>
           </div>
         </div>
-        <div @click="disconnect">
-          <font-awesome-icon :icon="['far', 'user']" />
-          <RouterLink :to="{ name: 'login' }">{{
-            token.token ? token.username : 'Se connecter'
-          }}</RouterLink>
+        <div>
+          <div>
+            <font-awesome-icon :icon="['far', 'user']" />
+            <RouterLink :to="{ name: 'login' }">{{
+              token.token ? token.username : 'Se connecter'
+            }}</RouterLink>
+          </div>
+          <div v-if="token.token">
+            <font-awesome-icon :icon="['fas', 'arrow-right']" @click="disconnect" />
+          </div>
         </div>
       </div>
       <div class="bottomHeader">
