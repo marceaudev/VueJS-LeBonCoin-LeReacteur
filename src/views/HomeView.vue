@@ -4,6 +4,7 @@ import axios from 'axios'
 import OfferCard from '@/components/OfferCard.vue'
 import SellBanner from '@/components/SellBanner.vue'
 import Filter from '@/components/Filter.vue'
+import Pagination from '@/components/Pagination.vue'
 
 const offersList = ref({})
 
@@ -38,7 +39,7 @@ onMounted(async () => {
       <Filter :sort="sort" :pricemax="pricemax" :pricemin="pricemin" />
       <h1>Des millions de petites annonces et autant d'occasions de se faire plaisir</h1>
       <SellBanner />
-      <section class="homeOffers">
+      <section class="homeOffers" v-if="offersList.data && offersList.data.length > 0">
         <OfferCard
           v-for="offer in offersList.data"
           :key="offer.id"
@@ -46,6 +47,10 @@ onMounted(async () => {
           :id="offer.id"
         />
       </section>
+      <section v-else class="noOffers">
+        <p>Aucune offre disponible.</p>
+      </section>
+      <Pagination :pagination="offersList.meta.pagination" />
     </div>
   </main>
 </template>
@@ -71,8 +76,24 @@ h1 {
 .homeOffers {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 20px;
+  gap: 25px;
   margin-top: 25px;
+}
+
+/* no offers section */
+.noOffers {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  background-image: url(../assets/img/illustration.png);
+  background-position: bottom;
+  background-size: cover;
+}
+
+.noOffers p {
+  font-size: 20px;
+  font-weight: bold;
 }
 </style>

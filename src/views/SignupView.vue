@@ -1,6 +1,8 @@
 <script setup>
 import { inject, ref } from 'vue'
 import axios from 'axios'
+import { useCookies } from 'vue3-cookies'
+const { cookies } = useCookies()
 
 const token = inject('token')
 
@@ -22,6 +24,8 @@ const signup = async () => {
     )
     token.username = data.user.username
     token.token = data.jwt
+    cookies.set('token', data.jwt)
+    cookies.set('username', data.user.username)
     isPending.value = false
   } catch (error) {
     info.value = 'Un problème est survenu, veuillez essayer à nouveau'

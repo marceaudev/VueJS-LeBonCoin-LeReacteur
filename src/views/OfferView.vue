@@ -55,6 +55,7 @@ const dateFormat = computed(() => {
             :alt="offerInfos.attributes.title"
             class="offerImg"
           />
+          <img v-else src="../assets/img/no-img.png" class="offerImg" />
           <font-awesome-icon
             :icon="['fas', 'chevron-right']"
             class="right"

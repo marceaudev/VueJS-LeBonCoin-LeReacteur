@@ -1,12 +1,31 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter, useRoute } from 'vue-router'
 import logo from '../assets/img/logo.svg'
 import PublishBtn from './PublishBtn.vue'
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 import { useCookies } from 'vue3-cookies'
 const { cookies } = useCookies()
 
+const route = useRoute()
+const router = useRouter()
+
 const token = inject('token')
+
+const props = defineProps(['title'])
+
+const title = ref(props.title)
+
+const handleSubmit = () => {
+  const queries = { ...route.query }
+
+  if (title.value) {
+    queries.title = title.value
+  } else {
+    delete queries.title
+  }
+  queries.page = 1
+  router.push({ name: 'home', query: queries })
+}
 
 const disconnect = () => {
   cookies.remove('token')
@@ -25,15 +44,16 @@ const disconnect = () => {
         </RouterLink>
         <div>
           <PublishBtn />
-          <div>
+          <form @submit.prevent="handleSubmit">
             <input
               type="text"
               name="searchBar"
               id="searchBar"
               placeholder="Rechercher sur leboncoin"
+              v-model="title"
             />
             <button><font-awesome-icon :icon="['fas', 'search']" /></button>
-          </div>
+          </form>
         </div>
         <div class="login-out">
           <div>
@@ -116,14 +136,14 @@ img {
 }
 
 /* topHeader middle bloc search input + search button */
-.topHeader > div:nth-child(2) > div {
+form {
   display: flex;
   position: relative;
   align-items: center;
 }
 
 /* search button position */
-.topHeader > div:nth-child(2) > div button {
+form button {
   position: absolute;
   right: 5px;
   height: 32px;

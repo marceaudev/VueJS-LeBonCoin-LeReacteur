@@ -22,6 +22,8 @@ import {
   faEyeSlash,
   faArrowRight,
   faSignOutAlt,
+  faAngleRight,
+  faAngleLeft,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { faUser, faSquarePlus, faHeart, faClock } from '@fortawesome/free-regular-svg-icons'
@@ -41,6 +43,8 @@ library.add(
   faEyeSlash,
   faArrowRight,
   faSignOutAlt,
+  faAngleRight,
+  faAngleLeft,
 )
 
 const token = reactive({

@@ -30,7 +30,13 @@ const dateFormat = computed(() => {
       />
       <p>{{ offers.owner.data.attributes.username }}</p>
     </div>
-    <img :src="offers.pictures.data[0].attributes.url" :alt="offers.title" class="offerImg" />
+    <img
+      v-if="offers.pictures.data"
+      :src="offers.pictures.data[0].attributes.url"
+      :alt="offers.title"
+      class="offerImg"
+    />
+    <img v-else src="../assets/img/no-img.png" class="offerImg" />
     <p class="title">{{ offers.title }}</p>
     <p class="price">{{ priceFormat(offers.price) }} €</p>
     <font-awesome-icon :icon="['far', 'heart']" />
