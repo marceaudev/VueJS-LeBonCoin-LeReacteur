@@ -1,20 +1,33 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
 import axios from 'axios'
 import OfferCard from '@/components/OfferCard.vue'
 import SellBanner from '@/components/SellBanner.vue'
+import Filter from '@/components/Filter.vue'
 
 const offersList = ref({})
 
+const props = defineProps(['page', 'title', 'sort', 'pricemax', 'pricemin'])
+
 onMounted(async () => {
-  try {
-    const { data } = await axios.get(
-      'https://site--strapileboncoin--2m8zk47gvydr.code.run/api/offers?populate[0]=pictures&populate[1]=owner.avatar',
-    )
-    offersList.value = data
-  } catch (error) {
-    console.log(error.message)
-  }
+  watchEffect(async () => {
+    try {
+      let pricefilters = ''
+
+      if (props.pricemax) {
+        pricefilters += `&filters[price][$lte]=${props.pricemax}`
+      }
+      if (props.pricemin) {
+        pricefilters += `&filters[price][$gte]=${props.pricemin}`
+      }
+      const { data } = await axios.get(
+        `https://site--strapileboncoin--2m8zk47gvydr.code.run/api/offers?populate[0]=pictures&populate[1]=owner.avatar&filters[title][$containsi]=${props.title}${pricefilters}&pagination[page]=${props.page}&pagination[pageSize]=10&sort=${props.sort}`,
+      )
+      offersList.value = data
+    } catch (error) {
+      console.log(error.message)
+    }
+  })
 })
 </script>
 
@@ -22,6 +35,7 @@ onMounted(async () => {
   <main class="container">
     <p v-if="!offersList.data" class="loader">Chargement en cours...</p>
     <div v-else>
+      <Filter :sort="sort" :pricemax="pricemax" :pricemin="pricemin" />
       <h1>Des millions de petites annonces et autant d'occasions de se faire plaisir</h1>
       <SellBanner />
       <section class="homeOffers">

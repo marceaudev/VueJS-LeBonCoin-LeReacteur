@@ -35,7 +35,7 @@ const disconnect = () => {
             <button><font-awesome-icon :icon="['fas', 'search']" /></button>
           </div>
         </div>
-        <div>
+        <div class="login-out">
           <div>
             <font-awesome-icon :icon="['far', 'user']" />
             <RouterLink :to="{ name: 'login' }">{{
@@ -43,7 +43,7 @@ const disconnect = () => {
             }}</RouterLink>
           </div>
           <div v-if="token.token">
-            <font-awesome-icon :icon="['fas', 'arrow-right']" @click="disconnect" />
+            <font-awesome-icon :icon="['fas', 'sign-out-alt']" @click="disconnect" />
           </div>
         </div>
       </div>
@@ -156,11 +156,21 @@ img {
 }
 
 /* topHeader login*/
-.topHeader > div:nth-child(3) {
+.login-out {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.login-out div:first-child {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 5px;
+}
+
+.login-out div:last-child svg {
+  color: var(--grey);
 }
 
 /* bottomHeader size */
